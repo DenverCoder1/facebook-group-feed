@@ -17,7 +17,7 @@ The exact command to run depends on your Python installation. If you have multip
 
 The environment variables `DISCORD_WEBHOOK_URL` and `FACEBOOK_GROUP_IDS` must be set.
 
-The Discord webhook URL can be obtained by creating a webhook in the Discord channel you want to send messages to: (1) Right-click on the channel and select "Edit channel", (2) In the "Integrations" panel, select "Webhooks" then "New Webhook", (3) Give the webhook a name and press "Copy Webhook URL" to obtain the URL for sending to the webhook.
+The Discord webhook URL can be obtained by creating a webhook in the Discord channel you want to send messages to (1) Right-click on the channel and select "Edit channel", (2) In the "Integrations" panel, select "Webhooks" then "New Webhook", (3) Give the webhook a name and press "Copy Webhook URL" to obtain the URL for sending to the webhook.
 
 The Facebook group ID can be obtained by looking at the URL of the group. For example, the group ID for https://www.facebook.com/groups/1234567890/ is `1234567890`. The group ID may also be a string representing the group name if it appears in the URL.
 
