@@ -1,4 +1,5 @@
 import concurrent.futures
+import logging
 import os
 import time
 from datetime import datetime
@@ -8,6 +9,14 @@ from dotenv import load_dotenv
 from facebook_scraper import get_posts
 
 import channel
+
+fb_logger = logging.getLogger("facebook-scraper")
+fb_logger.disabled = True
+logger = logging.getLogger("facebook-group-feed-bot")
+logger.setLevel(logging.INFO)
+handler = logging.StreamHandler()
+handler.setFormatter(logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
+logger.addHandler(handler)
 
 load_dotenv()
 
@@ -59,7 +68,7 @@ def send_message(message: Mapping[str, Any]) -> None:
     Args:
         message: The message to send (as returned by facebook_scraper.get_posts)
     """
-    print("Sending message: " + message["post_url"])
+    logger.info("Sending message: " + message["post_url"])
     CHANNEL.send(message)
     write_sent_post_ids({message["post_id"]})
 
@@ -106,8 +115,8 @@ def send_all_new_messages(groups: Iterable[str | int]) -> None:
 
 
 if __name__ == "__main__":
-    print(f"Checking for new messages in groups: {', '.join(FACEBOOK_GROUP_IDS)}")
+    logger.info(f"Checking for new messages in groups: {', '.join(FACEBOOK_GROUP_IDS)}")
     while True:
         send_all_new_messages(FACEBOOK_GROUP_IDS)
-        print("Checking again in 5 minutes...")
+        logger.info("Checking again in 5 minutes...")
         time.sleep(60 * 5)  # sleep for 5 minutes before checking again
