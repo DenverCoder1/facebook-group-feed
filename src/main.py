@@ -107,6 +107,8 @@ def send_all_new_messages(groups: Iterable[str | int]) -> None:
             return
         # otherwise, send it
         send_message(post)
+        # add the post id to the set of sent posts
+        sent_posts.add(post["post_id"])
 
     # create a thread pool to process the groups in parallel
     with concurrent.futures.ThreadPoolExecutor() as executor:
