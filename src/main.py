@@ -90,8 +90,8 @@ def send_all_new_messages(groups: Iterable[str | int]) -> None:
 
     def send_post_callback(post: Mapping[str, Any]) -> None:
         """Send a post to the Discord webhook if it's new"""
-        # if the post is older than 5 hours, don't send it (compare unix timestamps)
-        if post["timestamp"] < time.time() - 60 * 60 * 5:
+        # if the post is older than 2 hours, don't send it (compare unix timestamps)
+        if post["timestamp"] < time.time() - 60 * 60 * 2:
             return
         # if the post is already sent, don't send it again
         if post["post_id"] in sent_posts:

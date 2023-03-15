@@ -56,4 +56,10 @@ class DiscordWebhookChannel(Channel):
         )
         if "images_lowquality" in message and len(message["images_lowquality"]) > 0:
             embed.set_image(url=message["images_lowquality"][0])
+        if "user_id" in message and "username" in message:
+            embed.set_author(
+                name=message["username"],
+                url=f"https://facebook.com/{message['user_id']}",
+                icon_url=f"https://graph.facebook.com/{message['user_id']}/picture?type=large",
+            )
         webhook.send(embed=embed)
