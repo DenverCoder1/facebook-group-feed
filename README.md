@@ -4,6 +4,26 @@ Send new messages from public Facebook groups to a Discord channel.
 
 To send messages to a different source, subclass the `Channel` abstract base class (ABC) in `channel.py` and implement the `send()` method. An example structure of a post can be found in [`structure.md`](structure.md).
 
+## Installation of dependencies
+
+Optionally, create a virtual environment and activate it to avoid installing dependencies globally.
+
+```bash
+virtualenv .venv
+
+# Linux / macOS
+source .venv/bin/activate
+
+# Windows
+.venv\Scripts\activate.bat
+```
+
+Install the dependencies.
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Usage
 
 ```bash
